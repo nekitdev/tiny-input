@@ -1,0 +1,14 @@
+[package]
+name = "tiny-input"
+version = "0.1.0"
+authors = ["nekitdev <nekit@nekit.dev>"]
+edition = "2021"
+description = "Tiny input macros."
+documentation = "https://docs.rs/tiny-input"
+readme = "README.md"
+repository = "https://github.com/nekitdev/tiny-input"
+license = "MIT"
+keywords = ["input", "macro"]
+
+[dependencies.thiserror]
+version = "1.0.63"
