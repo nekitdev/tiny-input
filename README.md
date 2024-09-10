@@ -28,7 +28,7 @@ Alternatively, you can add it directly from the source:
 
 ```toml
 [dependencies.tiny-input]
-git = "https://github.com/tiny-input/tiny-input.git"
+git = "https://github.com/nekitdev/tiny-input.git"
 ```
 
 ## Documentation
