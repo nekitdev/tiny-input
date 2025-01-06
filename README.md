@@ -21,7 +21,7 @@ Or by directly specifying it in the configuration like so:
 
 ```toml
 [dependencies]
-tiny-input = "0.1.0"
+tiny-input = "0.1.1"
 ```
 
 Alternatively, you can add it directly from the source:
