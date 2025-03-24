@@ -29,8 +29,8 @@
 //! ```no_run
 //! use tiny_input::{input, Error};
 //!
-//! match input!(type f64, "the inverse of ") {
-//!     Ok(value) => println!("is {}", 1.0 / value),
+//! match input!(as u64, "the square of ") {
+//!     Ok(value) => println!("is {}", value * value),
 //!     Err(error) => match error {
 //!         Error::Fetch(fetch_error) => eprintln!("failed to fetch: {fetch_error}"),
 //!         Error::Parse(parse_error) => eprintln!("failed to parse: {parse_error}"),
@@ -69,23 +69,23 @@ pub enum Error<E> {
 pub type Result<T, E> = std::result::Result<T, Error<E>>;
 
 /// The message used for expecting values.
-pub const RAW_INPUT_ERROR: &str = "`raw_input!` returned an error";
+pub const FETCH_ERROR: &str = "I/O error occured while fetching input";
 
 /// Invokes [`raw_input!`], panicking on I/O errors before parsing the string.
 #[macro_export]
 macro_rules! tiny_input {
-    (type $type: ty $(, $($token: tt)+)?) => {
-        $crate::raw_input!($($($token)+)?).expect($crate::RAW_INPUT_ERROR).parse::<$type>()
+    (as $type: ty $(, $($token: tt)+)?) => {
+        $crate::raw_input!($($($token)+)?).expect($crate::FETCH_ERROR).parse::<$type>()
     };
     ($($token: tt)*) => {
-        $crate::raw_input!($($token)*).expect($crate::RAW_INPUT_ERROR).parse()
+        $crate::raw_input!($($token)*).expect($crate::FETCH_ERROR).parse()
     };
 }
 
 /// Similar to [`tiny_input!`], except I/O and parse errors are wrapped into [`enum@Error<E>`].
 #[macro_export]
 macro_rules! input {
-    (type $type: ty $(, $($token: tt)+)?) => {
+    (as $type: ty $(, $($token: tt)+)?) => {
         $crate::raw_input!($($($token)+)?)
             .map_err($crate::Error::Fetch)
             .and_then(|string| string.parse::<$type>().map_err($crate::Error::Parse))
