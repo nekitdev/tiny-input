@@ -42,7 +42,7 @@
 //! one that attempts to infer the type, and one where you can provide the type explicitly.
 
 #![forbid(unsafe_code)]
-#![forbid(missing_docs)]
+#![deny(missing_docs)]
 
 use thiserror::Error;
 
@@ -57,7 +57,7 @@ pub enum Error<E> {
     /// [`stdin`]: std::io::stdin
     /// [`stdout`]: std::io::stdout
     Fetch(std::io::Error),
-    /// Parse error, which is contrained to implement the [`Error`] trait.
+    /// Parse error, which is constrained to implement the [`Error`] trait.
     /// Returned when parsing into `T` fails; the [`T::Err`] is wrapped into this variant.
     ///
     /// [`T::Err`]: std::str::FromStr::Err
@@ -69,7 +69,7 @@ pub enum Error<E> {
 pub type Result<T, E> = std::result::Result<T, Error<E>>;
 
 /// The message used for expecting values.
-pub const FETCH_ERROR: &str = "I/O error occured while fetching input";
+pub const FETCH_ERROR: &str = "I/O error occurred while fetching input";
 
 /// Invokes [`raw_input!`], panicking on I/O errors before parsing the string.
 #[macro_export]
